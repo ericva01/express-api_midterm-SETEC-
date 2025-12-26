@@ -13,6 +13,7 @@ const Product = sequelize.define(
     price: DataTypes.DECIMAL(10, 2),
     discount: DataTypes.DECIMAL(5, 2),
     qty: DataTypes.INTEGER,
+    productimage: DataTypes.STRING,
     categoryid: {
       type: DataTypes.INTEGER,
       references: {

@@ -11,7 +11,6 @@ const productRouter = require('./routes/product');
 const usersRouter = require('./routes/users');
 const orderRouter = require('./routes/order');
 const orderDetailRouter = require('./routes/orderDetail');
-
 var app = express();
 
 // WARNING: { force: true } will drop and recreate the tables.
@@ -20,16 +19,19 @@ models.sequelize.sync().then(() => {
   console.log('Database & tables created!');
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/public", express.static("public"));
+
 
 app.use('/order', orderRouter);
 app.use('/order-detail', orderDetailRouter);
 app.use('/product', productRouter);
 app.use('/category', categoryRouter);
 app.use('/users', usersRouter);
-
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
