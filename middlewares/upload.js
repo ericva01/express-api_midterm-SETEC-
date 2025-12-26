@@ -135,9 +135,10 @@ const validateFileUpload = (req, res, next) => {
   next();
 };
 
-module.exports = {
-  upload,
-  handleMulterError,
-  deleteUploadedFile,
-  validateFileUpload,
-};
+module.exports = upload;
+
+// Also export additional utilities
+module.exports.upload = upload;
+module.exports.handleMulterError = handleMulterError;
+module.exports.deleteUploadedFile = deleteUploadedFile;
+module.exports.validateFileUpload = validateFileUpload;
